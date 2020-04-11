@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+OS=$1
+NAME=${PWD##*/}
+FRESH="false"
+
+[[ -z "$OS" ]] && OS="Linux-gnu"
+
+case $OS in
+    "Linux-gnu") CC="cargo" && TARGET="x86_64-unknown-linux-gnu" && TARGETPATH=$TARGET/ && EXT="" ;;
+    "WindowsNT") CC="cross" && TARGET="x86_64-pc-windows-gnu" && TARGETPATH=$TARGET/ && EXT=".exe" ;;
+    *) echo "compiler not set for OS:$OS" ;;
+esac
+
+if [ "$FRESH" == "true" ]; then
+    mkdir -p usr/{dll,rsc}
+    mkdir -p usr/rsc{img,font}
+
+    case $OS in
+        "Linux-gu") ;;
+        "WindowsNT") cp ../dll/sdl/{SDL2.dll,SDL2_image.dll,SDL2_mixer.dll,SDL2_ttf.dll} usr/dll ;;
+        *) ;;
+    esac
+fi
+
+### BUILD ###
+#RUSTFLAGS="-C link-args=-Wl,-rpath,dll"
+$CC build --release --target=$TARGET
+
+cp target/${TARGETPATH}release/$NAME$EXT usr
+strip usr/$NAME$EXT

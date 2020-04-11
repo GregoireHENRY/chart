@@ -1,0 +1,16 @@
+[package]
+name = "chart"
+version = "0.1.0"
+authors = ["GregoireHENRY <gregoire.henry@ipsa.fr>"]
+edition = "2018"
+
+[dependencies]
+chrono = "0.4"
+
+[dependencies.sdl2]
+version = "0.33"
+default-features = false
+features = ["ttf", "image", "mixer"]
+
+[profile.release]
+lto = true
