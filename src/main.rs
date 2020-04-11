@@ -12,13 +12,17 @@ use sdl2::event::Event;
 
 fn main() -> Result<(), String>
 {
+    // Voilà de quoi charger nos ressource directement dans l'executable
+    let font = include_bytes!("../rsc/font/RobotoMono-Regular.ttf");
+    let rwops_font = sdl2::rwops::RWops::from_bytes(font)?;
+
     let context = sdl2::init()?;
     let context_ttf = sdl2::ttf::init().map_err(|e| e.to_string())?;
     let video = context.video()?;
     let window = video.window("Chart", settings::WIDTH, settings::HEIGHT).position_centered().build().map_err(|e| e.to_string())?;
     let mut canvas = window.into_canvas().present_vsync().build().map_err(|e| e.to_string())?;
     let texture_creator = canvas.texture_creator();
-    let mut font = context_ttf.load_font("rsc/font/RobotoMono-Regular.ttf", 14)?;
+    let mut font = context_ttf.load_font_from_rwops(rwops_font, 14)?;
     let mut events = context.event_pump()?;
     let mut _keyaltr: u16 = 0;
 
