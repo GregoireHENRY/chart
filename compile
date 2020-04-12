@@ -13,8 +13,7 @@ case $OS in
 esac
 
 if [ "$FRESH" == "true" ]; then
-    mkdir -p usr/{dll,rsc}
-    mkdir -p usr/rsc{img,font}
+    mkdir -p usr/dll
 
     case $OS in
         "Linux-gu") ;;
