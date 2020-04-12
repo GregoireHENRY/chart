@@ -10,13 +10,14 @@ case $OS in
     "windows" | "Windows") OS="WindowsNT";;
     *);;
 esac
-[[ "$RELEASE" == "release" ]] && BUILD="release" && FLAGS+="--release " || BUILD="debug"
 
 case $OS in
     "Linux-gnu") CC="cargo" && TARGET="x86_64-unknown-linux-gnu" && EXT="";;
     "WindowsNT") CC="cross" && TARGET="x86_64-pc-windows-gnu" && EXT=".exe";;
     *) echo "ERROR: Compiler not set for OS:$OS" && exit 1;;
 esac
+
+[[ "$RELEASE" == "release" ]] && BUILD="release" && FLAGS+="--release " || BUILD="debug"
 
 FLAGS+="--target=$TARGET "
 FLAGS+="-- -L dll "
