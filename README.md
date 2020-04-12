@@ -7,12 +7,12 @@
 
 ARG1:
 ```
-windows linux
+**linux** windows
 ```
 
 ARG2:
 ```
-release
+**default** release
 ```
 
 By default it compiles in debug mode for linux.
