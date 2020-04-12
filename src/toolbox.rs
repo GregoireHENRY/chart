@@ -21,8 +21,10 @@ pub fn unit(p: Point) -> Point
 
 pub fn position_text(x: u32, y: u32, w: u32, h: u32, align: &str) -> Rect
 {
-    let mut x = x;
-    let mut y = y;
+    let mut x = x as i32;
+    let mut y = y as i32;
+    let w = w as i32;
+    let h = h as i32;
     match align {
         "right-top" => {
             x = x - w;
@@ -43,7 +45,7 @@ pub fn position_text(x: u32, y: u32, w: u32, h: u32, align: &str) -> Rect
         },
         _ => (),
     }
-    Rect::new(x as i32, y as i32, w, h)
+    Rect::new(x, y, w as u32, h as u32)
 }
 
 pub fn draw_dashed_line(canvas: &mut Canvas<Window>, p1: Point, pf: Point, n: i32) -> Result<(), String>
