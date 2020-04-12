@@ -1,6 +1,11 @@
 # CHART FOR TRADING
 
 ## Usage
+```
+usr/chart
+```
+
+## Compilation
 ```bash
 ./compile ARG1 ARG2
 ```
