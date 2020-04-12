@@ -7,7 +7,7 @@
 
 ARG1:
 ```
-windows, linux
+windows linux
 ```
 
 ARG2:
@@ -15,4 +15,4 @@ ARG2:
 release
 ```
 
-By default it compile in debug mode for linux.
+By default it compiles in debug mode for linux.
