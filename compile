@@ -18,9 +18,10 @@ case $OS in
     *) echo "ERROR: Compiler not set for OS:$OS" && exit 1;;
 esac
 
-### BUILD ###
-#RUSTFLAGS="-C link-args=-Wl,-rpath,dll"
-$CC build $FLAGS --target=$TARGET
+FLAGS+="--target=$TARGET "
+FLAGS+="-- -L dll "
+
+$CC rustc $FLAGS
 
 cp target/$TARGET/$BUILD/$NAME$EXT usr
 strip usr/$NAME$EXT
