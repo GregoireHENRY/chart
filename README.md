@@ -6,13 +6,11 @@
 ```
 
 ARG1:
-```
-**linux** windows
-```
+<pre>
+<b>linux</b> windows
+</pre>
 
 ARG2:
-```
-**default** release
-```
-
-By default it compiles in debug mode for linux.
+<pre>
+<b>debug</b> release
+</pre>
