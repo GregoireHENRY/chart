@@ -86,6 +86,12 @@ pub fn rect(x: i32, y: i32, w: i32, h: i32, s: i32) -> Rect
     Rect::new(rx+s/2, ry+s/2, (rw-s) as u32, (rh-s) as u32)
 }
 
+pub fn draw_rect(canvas: &mut Canvas<Window>, x: i32, y: i32, w: i32, h: i32) -> Result<(), String>
+{
+    canvas.fill_rect(rect(x, y, w, h, 0))?;
+    Ok(())
+}
+
 pub fn rect_thick(canvas: &mut Canvas<Window>, x: i32, y: i32, w: i32, h: i32, s: i32, co: Color, ci: Color) -> Result<(), String>
 {
     canvas.set_draw_color(co);

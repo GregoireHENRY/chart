@@ -8,7 +8,7 @@ use crate::chart::axis;
 use chrono::{DateTime, FixedOffset, Utc};
 use sdl2::video::Window;
 use sdl2::render::Canvas;
-use sdl2::rect::{Point, Rect};
+use sdl2::rect::Point;
 
 pub struct Candle
 {
@@ -30,6 +30,10 @@ impl Candle
     {
         return (self.open+self.close)/2.0;
     }
+    fn get_side(&self) -> bool
+    {
+        return self.close > self.open;
+    }
     pub fn draw(&self, canvas: &mut Canvas<Window>, xaxis: &axis::Axis, yaxis: &axis::Axis, time: DateTime<Utc>) -> Result<(), String>
     {
         let xmin = xaxis.min;
@@ -45,6 +49,7 @@ impl Candle
         let o = toolbox::map_ax(self.open, ymin, ymax, 50.0, settings::HEIGHT as f32-150.0) as i32;
         let c = toolbox::map_ax(self.close, ymin, ymax, 50.0, settings::HEIGHT as f32-150.0) as i32;
         let ci;
+        if  x < -w || x > settings::WIDTH as i32-100+w || (self.get_side() && self.low < 0.0) || (!self.get_side() && self.high > settings::HEIGHT as f32-100.0) { return Ok(()); }
         if o > c { ci = settings::GREEN; }
         else     { ci = settings::RED; }
         canvas.set_draw_color(settings::WHITE);

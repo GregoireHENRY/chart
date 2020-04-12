@@ -124,6 +124,9 @@ impl Axis
     }
     pub fn draw(&self, canvas: &mut Canvas<Window>, texture_creator: &TextureCreator<WindowContext>, font: &mut Font, time: DateTime<Utc>) -> Result<(), String>
     {
+        canvas.set_draw_color(settings::BLACK);
+        if self.axe == 0 {toolbox::draw_rect(canvas, 0, settings::HEIGHT as i32-100, settings::WIDTH as i32, 100)?; }
+        else             {toolbox::draw_rect(canvas, settings::WIDTH as i32-100, 0,  100, settings::HEIGHT as i32)?; }
         canvas.set_draw_color(settings::WHITE);
         canvas.draw_line(self.line.0, self.line.1)?;
         self.draw_ticklabel(canvas, texture_creator, font, time)?;

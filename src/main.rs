@@ -12,7 +12,6 @@ use sdl2::event::Event;
 
 fn main() -> Result<(), String>
 {
-    // Voilà de quoi charger nos ressource directement dans l'executable
     let font = include_bytes!("../rsc/font/RobotoMono-Regular.ttf");
     let rwops_font = sdl2::rwops::RWops::from_bytes(font)?;
 
