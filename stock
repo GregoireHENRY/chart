@@ -1,8 +1,0 @@
-curl -s 'http://download.finance.yahoo.com/d/quotes.csv?s=avxl,goog,aapl&f=sl1c6sj2ss6sf6' \
-| sed 's/"[A-Z][^"]*",/ & /g' \
-| awk -- '{
-        gsub("\"", "", $2);
-        gsub(",", "", $4);
-        gsub(",", "", $8);
-        print $1 $2 $4 "," $6 $8
-    }'
