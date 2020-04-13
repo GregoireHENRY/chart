@@ -1,0 +1,12 @@
+/home/grhenry/code/rust/chart/target/debug/deps/sdl2_sys-39db31f2e0a41a33.rmeta: /home/grhenry/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-sys-0.33.0/src/lib.rs /home/grhenry/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-sys-0.33.0/src/mixer.rs /home/grhenry/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-sys-0.33.0/src/image.rs /home/grhenry/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-sys-0.33.0/src/ttf.rs /home/grhenry/code/rust/chart/target/debug/build/sdl2-sys-171497b52ff7d5c4/out/sdl_bindings.rs /home/grhenry/code/rust/chart/target/debug/build/sdl2-sys-171497b52ff7d5c4/out/sdl_mixer_bindings.rs /home/grhenry/code/rust/chart/target/debug/build/sdl2-sys-171497b52ff7d5c4/out/sdl_image_bindings.rs /home/grhenry/code/rust/chart/target/debug/build/sdl2-sys-171497b52ff7d5c4/out/sdl_ttf_bindings.rs
+
+/home/grhenry/code/rust/chart/target/debug/deps/sdl2_sys-39db31f2e0a41a33.d: /home/grhenry/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-sys-0.33.0/src/lib.rs /home/grhenry/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-sys-0.33.0/src/mixer.rs /home/grhenry/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-sys-0.33.0/src/image.rs /home/grhenry/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-sys-0.33.0/src/ttf.rs /home/grhenry/code/rust/chart/target/debug/build/sdl2-sys-171497b52ff7d5c4/out/sdl_bindings.rs /home/grhenry/code/rust/chart/target/debug/build/sdl2-sys-171497b52ff7d5c4/out/sdl_mixer_bindings.rs /home/grhenry/code/rust/chart/target/debug/build/sdl2-sys-171497b52ff7d5c4/out/sdl_image_bindings.rs /home/grhenry/code/rust/chart/target/debug/build/sdl2-sys-171497b52ff7d5c4/out/sdl_ttf_bindings.rs
+
+/home/grhenry/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-sys-0.33.0/src/lib.rs:
+/home/grhenry/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-sys-0.33.0/src/mixer.rs:
+/home/grhenry/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-sys-0.33.0/src/image.rs:
+/home/grhenry/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-sys-0.33.0/src/ttf.rs:
+/home/grhenry/code/rust/chart/target/debug/build/sdl2-sys-171497b52ff7d5c4/out/sdl_bindings.rs:
+/home/grhenry/code/rust/chart/target/debug/build/sdl2-sys-171497b52ff7d5c4/out/sdl_mixer_bindings.rs:
+/home/grhenry/code/rust/chart/target/debug/build/sdl2-sys-171497b52ff7d5c4/out/sdl_image_bindings.rs:
+/home/grhenry/code/rust/chart/target/debug/build/sdl2-sys-171497b52ff7d5c4/out/sdl_ttf_bindings.rs:

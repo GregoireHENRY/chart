@@ -19,7 +19,7 @@ fn main() -> Result<(), String>
     let context_ttf = sdl2::ttf::init().map_err(|e| e.to_string())?;
     let video = context.video()?;
     let window = video.window("Chart", settings::WIDTH, settings::HEIGHT).position_centered().build().map_err(|e| e.to_string())?;
-    let mut canvas = window.into_canvas().present_vsync().build().map_err(|e| e.to_string())?;
+    let mut canvas = window.into_canvas().accelerated().present_vsync().build().expect("Canvas build failed");
     let texture_creator = canvas.texture_creator();
     let mut font = context_ttf.load_font_from_rwops(rwops_font, 14)?;
     let mut events = context.event_pump()?;
@@ -44,6 +44,7 @@ fn main() -> Result<(), String>
             }
         }
         chart.update();
+        canvas.clear();
         chart.draw(&mut canvas, &texture_creator, &mut font)?;
         canvas.present();
         sleep(Duration::from_millis(1000/60000));

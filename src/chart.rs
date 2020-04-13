@@ -10,7 +10,7 @@ use crate::toolbox;
 use chrono::{DateTime, Utc};
 use sdl2::video::{Window, WindowContext};
 use sdl2::render::{Canvas, TextureCreator};
-use sdl2::rect::Point;
+use sdl2::rect::{Point, Rect};
 use sdl2::ttf::Font;
 
 pub struct Chart
@@ -61,7 +61,7 @@ impl Chart
     pub fn draw(&mut self, canvas: &mut Canvas<Window>, texture_creator: &TextureCreator<WindowContext>, font: &mut Font) -> Result<(), String>
     {
         canvas.set_draw_color(settings::BLACK);
-        canvas.clear();
+        canvas.fill_rect(Rect::new(0, 0, settings::WIDTH, settings::HEIGHT))?;
         self.draw_candles(canvas)?;
         self.xaxis.draw(canvas, texture_creator, font, self.time)?;
         self.yaxis.draw(canvas, texture_creator, font, self.time)?;

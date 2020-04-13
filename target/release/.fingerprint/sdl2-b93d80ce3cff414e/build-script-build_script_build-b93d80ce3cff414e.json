@@ -1,0 +1,1 @@
+{"rustc":15199935378135370970,"features":"[\"image\", \"mixer\", \"ttf\"]","target":10088282520713642473,"profile":1405300175956473297,"path":3735489776256482157,"deps":[],"local":[{"CheckDepInfo":{"dep_info":"release/.fingerprint/sdl2-b93d80ce3cff414e/dep-build-script-build_script_build-b93d80ce3cff414e"}}],"rustflags":[],"metadata":3204612833656974723}
