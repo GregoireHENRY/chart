@@ -1,17 +1,25 @@
 extern crate sdl2;
 extern crate chrono;
+extern crate dotenv;
 
 mod settings;
 mod toolbox;
 mod chart;
 use chart::candle;
 
+use sdl2::event::Event;
 use std::thread::sleep;
 use std::time::Duration;
-use sdl2::event::Event;
+use dotenv::dotenv;
+use std::env;
 
 fn main() -> Result<(), String>
 {
+    dotenv().ok();
+    for (key, value) in env::vars() {
+        println!("{}: ()", key, value);
+    }
+
     let font = include_bytes!("../rsc/font/RobotoMono-Regular.ttf");
     let rwops_font = sdl2::rwops::RWops::from_bytes(font)?;
 
