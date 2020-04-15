@@ -1,5 +1,3 @@
-#[macro_use]
-extern crate dotenv_codegen;
 extern crate sdl2;
 extern crate chrono;
 extern crate dotenv;
@@ -16,13 +14,7 @@ use std::env;
 
 fn main() -> Result<(), String>
 {
-    dotenv::from_filename("main.env").ok();
     dotenv::dotenv().ok();
-
-    for (key, value) in env::vars() {
-        println!("{}: {}", key, value);
-    }
-
     let font = include_bytes!("../rsc/font/RobotoMono-Regular.ttf");
     let rwops_font = sdl2::rwops::RWops::from_bytes(font)?;
 
