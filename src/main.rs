@@ -1,3 +1,5 @@
+#[macro_use]
+extern crate dotenv_codegen;
 extern crate sdl2;
 extern crate chrono;
 extern crate dotenv;
@@ -10,14 +12,15 @@ use chart::candle;
 use sdl2::event::Event;
 use std::thread::sleep;
 use std::time::Duration;
-use dotenv::dotenv;
 use std::env;
 
 fn main() -> Result<(), String>
 {
-    dotenv().ok();
+    dotenv::from_filename("main.env").ok();
+    dotenv::dotenv().ok();
+
     for (key, value) in env::vars() {
-        println!("{}: ()", key, value);
+        println!("{}: {}", key, value);
     }
 
     let font = include_bytes!("../rsc/font/RobotoMono-Regular.ttf");
