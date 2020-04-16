@@ -48,24 +48,24 @@ impl Axis
         if axe == 0 {
             max = 0.0;
             min = -3600.0;
-            line = (Point::new(0, settings::HEIGHT as i32-100), Point::new(settings::WIDTH as i32, settings::HEIGHT as i32-100));
+            line = (Point::new(0, settings::env_u32("HEIGHT") as i32-100), Point::new(settings::env_u32("WIDTH") as i32, settings::env_u32("HEIGHT") as i32-100));
             tick_size = Point::new(0, 5);
             ticklabel_offset = Point::new(0, 20);
             ticklabel_offset_0 = Point::new(50, 0);
             ticklabel_offset_f = Point::new(-150, 0);
             align = "mid-top";
-            mir = Rect::new(0, settings::HEIGHT as i32-100, 100, 20);
+            mir = Rect::new(0, settings::env_u32("HEIGHT") as i32-100, 100, 20);
         }
         else {
             max = 1.0;
             min = -1.0;
-            line = (Point::new(settings::WIDTH as i32-100, settings::HEIGHT as i32), Point::new(settings::WIDTH as i32-100, 0));
+            line = (Point::new(settings::env_u32("WIDTH") as i32-100, settings::env_u32("HEIGHT") as i32), Point::new(settings::env_u32("WIDTH") as i32-100, 0));
             tick_size = Point::new(5, 0);
             ticklabel_offset = Point::new(20, 0);
             ticklabel_offset_0 = Point::new(0,-150);
             ticklabel_offset_f = Point::new(0, 50);
             align = "left-mid";
-            mir = Rect::new(settings::WIDTH as i32-100, 0, 100, 20);
+            mir = Rect::new(settings::env_u32("WIDTH") as i32-100, 0, 100, 20);
         }
         Axis{axe: axe,
              line: line,
@@ -125,8 +125,8 @@ impl Axis
     pub fn draw(&self, canvas: &mut Canvas<Window>, texture_creator: &TextureCreator<WindowContext>, font: &mut Font, time: DateTime<Utc>) -> Result<(), String>
     {
         canvas.set_draw_color(settings::BLACK);
-        if self.axe == 0 {toolbox::draw_rect(canvas, 0, settings::HEIGHT as i32-100, settings::WIDTH as i32-100, 100)?; }
-        else             {toolbox::draw_rect(canvas, settings::WIDTH as i32-100, 0,  100, settings::HEIGHT as i32-100)?; }
+        if self.axe == 0 {toolbox::draw_rect(canvas, 0, settings::env_u32("HEIGHT") as i32-100, settings::env_u32("WIDTH") as i32-100, 100)?; }
+        else             {toolbox::draw_rect(canvas, settings::env_u32("WIDTH") as i32-100, 0,  100, settings::env_u32("HEIGHT") as i32-100)?; }
         canvas.set_draw_color(settings::WHITE);
         canvas.draw_line(self.line.0, self.line.1)?;
         self.draw_ticklabel(canvas, texture_creator, font, time)?;
@@ -144,7 +144,7 @@ impl Axis
                 label = format!("{:8.5}", self.ticklabel[i]);
             }
             else {
-                let ticklabel = time + Duration::seconds(self.ticklabel[i] as i64) + Duration::seconds(settings::GMT as i64 *3600);
+                let ticklabel = time + Duration::seconds(self.ticklabel[i] as i64) + Duration::seconds(settings::env_i64("GMT") as i64 *3600);
                 let ticklabel2: DateTime<Utc> = ticklabel.into();
                 label = format!("{}", ticklabel2.format("%R"));
             }
@@ -157,14 +157,14 @@ impl Axis
         let string;
         if self.axe == 0 {
             self.mir.x = x - self.mir.w/2;
-            let data = toolbox::map_ax(x as f32, 50.0, settings::WIDTH as f32-150.0, self.max, self.min);
-            let ticklabel = time + Duration::seconds(data as i64) + Duration::seconds(settings::GMT as i64 *3600);
+            let data = toolbox::map_ax(x as f32, 50.0, settings::env_u32("WIDTH") as f32-150.0, self.max, self.min);
+            let ticklabel = time + Duration::seconds(data as i64) + Duration::seconds(settings::env_i64("GMT") *3600);
             let ticklabel2: DateTime<Utc> = ticklabel.into();
             string = format!("{}", ticklabel2.format("%R"));
         }
         else {
             self.mir.y = x - self.mir.h/2;
-            string = format!("{:8.5}", toolbox::map_ax(x as f32, 50.0, settings::HEIGHT as f32-150.0, self.min, self.max)); 
+            string = format!("{:8.5}", toolbox::map_ax(x as f32, 50.0, settings::env_u32("HEIGHT") as f32-150.0, self.min, self.max)); 
         }
         canvas.fill_rect(self.mir)?;
         toolbox::text(canvas, texture_creator, font, &string, self.mir.center().x, self.mir.center().y, "mid-mid", settings::BLACK)?;

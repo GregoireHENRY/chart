@@ -10,7 +10,6 @@ use chart::candle;
 use sdl2::event::Event;
 use std::thread::sleep;
 use std::time::Duration;
-use std::env;
 
 fn main() -> Result<(), String>
 {
@@ -21,7 +20,7 @@ fn main() -> Result<(), String>
     let context = sdl2::init()?;
     let context_ttf = sdl2::ttf::init().map_err(|e| e.to_string())?;
     let video = context.video()?;
-    let window = video.window("Chart", settings::WIDTH, settings::HEIGHT).position_centered().build().map_err(|e| e.to_string())?;
+    let window = video.window("Chart", settings::env_u32("WIDTH"), settings::env_u32("HEIGHT")).position_centered().build().map_err(|e| e.to_string())?;
     let mut canvas = window.into_canvas().accelerated().present_vsync().build().expect("Canvas build failed");
     let texture_creator = canvas.texture_creator();
     let mut font = context_ttf.load_font_from_rwops(rwops_font, 14)?;

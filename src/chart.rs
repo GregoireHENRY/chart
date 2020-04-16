@@ -28,8 +28,8 @@ impl Chart
     pub fn new() -> Chart {
         Chart{xaxis: axis::Axis::new(0),
               yaxis: axis::Axis::new(1),
-              mouseh: (Point::new(0, 0), Point::new(settings::WIDTH as i32, 0)),
-              mousev: (Point::new(0, 0), Point::new(0, settings::HEIGHT as i32)),
+              mouseh: (Point::new(0, 0), Point::new(settings::env_u32("WIDTH") as i32, 0)),
+              mousev: (Point::new(0, 0), Point::new(0, settings::env_u32("HEIGHT") as i32)),
               time: Utc::now(),
               candles: Vec::new()}
     }
@@ -61,7 +61,7 @@ impl Chart
     pub fn draw(&mut self, canvas: &mut Canvas<Window>, texture_creator: &TextureCreator<WindowContext>, font: &mut Font) -> Result<(), String>
     {
         canvas.set_draw_color(settings::BLACK);
-        canvas.fill_rect(Rect::new(0, 0, settings::WIDTH, settings::HEIGHT))?;
+        canvas.fill_rect(Rect::new(0, 0, settings::env_u32("WIDTH"), settings::env_u32("HEIGHT")))?;
         self.draw_candles(canvas)?;
         self.xaxis.draw(canvas, texture_creator, font, self.time)?;
         self.yaxis.draw(canvas, texture_creator, font, self.time)?;
@@ -70,7 +70,7 @@ impl Chart
     }
     fn draw_mouse(&mut self, canvas: &mut Canvas<Window>, texture_creator: &TextureCreator<WindowContext>, font: &mut Font) -> Result<(), String>
     {
-        if self.mousev.0.x <= 0 || self.mousev.0.x > settings::WIDTH as i32-100 || self.mouseh.0.y <= 0 || self.mouseh.0.y > settings::HEIGHT as i32-100 {
+        if self.mousev.0.x <= 0 || self.mousev.0.x > settings::env_u32("WIDTH") as i32-100 || self.mouseh.0.y <= 0 || self.mouseh.0.y > settings::env_u32("HEIGHT") as i32-100 {
             return Ok(());
         }
         canvas.set_draw_color(settings::WHITE);

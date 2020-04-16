@@ -42,14 +42,14 @@ impl Candle
         let ymax = yaxis.max;
         let sec = time.signed_duration_since(self.time).num_seconds();
         let wi = 2;
-        let w = toolbox::map(settings::PERIOD as f32, xmin, xmax, 0.0, 600.0) as i32 -2*wi;
-        let x = toolbox::map_ax(-sec as f32, xmax, xmin, 50.0, settings::WIDTH as f32-150.0) as i32; 
-        let h = toolbox::map_ax(self.high, ymin, ymax, 50.0, settings::HEIGHT as f32-150.0) as i32;
-        let l = toolbox::map_ax(self.low, ymin, ymax, 50.0, settings::HEIGHT as f32-150.0) as i32;
-        let o = toolbox::map_ax(self.open, ymin, ymax, 50.0, settings::HEIGHT as f32-150.0) as i32;
-        let c = toolbox::map_ax(self.close, ymin, ymax, 50.0, settings::HEIGHT as f32-150.0) as i32;
+        let w = toolbox::map(settings::env_f32("PERIOD"), xmin, xmax, 0.0, 600.0) as i32 -2*wi;
+        let x = toolbox::map_ax(-sec as f32, xmax, xmin, 50.0, settings::env_u32("WIDTH") as f32-150.0) as i32; 
+        let h = toolbox::map_ax(self.high, ymin, ymax, 50.0, settings::env_u32("HEIGHT") as f32-150.0) as i32;
+        let l = toolbox::map_ax(self.low, ymin, ymax, 50.0, settings::env_u32("HEIGHT") as f32-150.0) as i32;
+        let o = toolbox::map_ax(self.open, ymin, ymax, 50.0, settings::env_u32("HEIGHT") as f32-150.0) as i32;
+        let c = toolbox::map_ax(self.close, ymin, ymax, 50.0, settings::env_u32("HEIGHT") as f32-150.0) as i32;
         let ci;
-        if  x < -w || x > settings::WIDTH as i32-100+w || (self.get_side() && self.low < 0.0) || (!self.get_side() && self.high > settings::HEIGHT as f32-100.0) { return Ok(()); }
+        if  x < -w || x > settings::env_u32("WIDTH") as i32-100+w || (self.get_side() && self.low < 0.0) || (!self.get_side() && self.high > settings::env_u32("HEIGHT") as f32-100.0) { return Ok(()); }
         if o > c { ci = settings::GREEN; }
         else     { ci = settings::RED; }
         canvas.set_draw_color(settings::WHITE);
