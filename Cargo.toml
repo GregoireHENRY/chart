@@ -3,6 +3,7 @@ name = "chart"
 version = "0.1.0"
 authors = ["GregoireHENRY <gregoire.henry@ipsa.fr>"]
 edition = "2018"
+build = "build.rs"
 
 [dependencies]
 chrono = "0.4"
@@ -16,3 +17,8 @@ features = ["ttf", "image", "mixer"]
 
 [profile.release]
 lto = true
+
+rustc-link-lib = [
+    "SDL2",
+    "SDL2_ttf",
+]
