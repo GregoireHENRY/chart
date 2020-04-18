@@ -4,7 +4,6 @@ version = "0.1.0"
 authors = ["GregoireHENRY <gregoire.henry@ipsa.fr>"]
 edition = "2018"
 build = "build.rs"
-link = "libSDL2-2.0.so"
 
 [dependencies]
 chrono = "0.4"
