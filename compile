@@ -20,7 +20,7 @@ esac
 [[ "$RELEASE" == "release" ]] && BUILD="release" && FLAGS+="--release " || BUILD="debug"
 
 FLAGS+="--target=$TARGET "
-#FLAGS+="-- -L dll "
+FLAGS+="-- -L dll "
 
 $CC rustc $FLAGS
 
