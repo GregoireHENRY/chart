@@ -12,8 +12,10 @@ case $OS in
 esac
 
 case $OS in
-    "Linux-gnu") CC="cargo" && TARGET="x86_64-unknown-linux-gnu" && EXT="";;
-    "WindowsNT") CC="cross" && TARGET="x86_64-pc-windows-gnu" && EXT=".exe";;
+    "Linux-gnu") CC="cargo" && TARGET="x86_64-unknown-linux-gnu" && EXT=""
+                 type sdl-config &> /dev/null || echo -e "SDL2 not found, consider:\nsudo apt-get install libsdl2-2.0\nand,\nsudo apt-get install libsdl2-mixer-2.0-0 libsdl2-image-2.0-0 libsdl2-ttf-2.0-0" || exit 1;;
+    "WindowsNT") CC="cross" && TARGET="x86_64-pc-windows-gnu" && EXT=".exe"
+                 type sdl-config &> /dev/null || echo -e "SDL2 not found, consider:\nhttps://www.libsdl.org/release/SDL-1.2.15-win32-x64.zip" || exit 1;;
     *) echo "ERROR: Compiler not set for OS:$OS" && exit 1;;
 esac
 
@@ -26,3 +28,5 @@ $CC rustc $FLAGS
 
 cp target/$TARGET/$BUILD/$NAME$EXT usr
 strip usr/$NAME$EXT
+
+#sudo apt-get install xorg-dev
