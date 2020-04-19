@@ -10,14 +10,9 @@ use chart::candle;
 use sdl2::event::Event;
 use std::thread::sleep;
 use std::time::Duration;
-use std::process::Command;
 
 fn main() -> Result<(), String>
 {
-    let _sdl2_test = Command::new("sdl2-config").arg("--version").output().is_err();
-    //println!("{}", _sdl2_test);
-    println!("{}", env!("LD_LIBRARY_PATH"));
-
     dotenv::dotenv().ok();
     let font = include_bytes!("../rsc/font/RobotoMono-Regular.ttf");
     let rwops_font = sdl2::rwops::RWops::from_bytes(font)?;
