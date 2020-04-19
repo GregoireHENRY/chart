@@ -15,14 +15,5 @@ version = "0.33"
 default-features = false
 features = ["ttf", "image", "mixer"]
 
-rustc-link-lib = [
-    "SDL2",
-    "SDL2_ttf",
-    "freetype-6",
-    "zlib1",
-]
-
 [profile.release]
 lto = true
-
-#LIBRARY_PATH
