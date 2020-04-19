@@ -23,7 +23,6 @@ esac
 
 FLAGS+="--target=$TARGET "
 FLAGS+="-- -L dll "
-FLAGS+="-C target-feature=+crt-static "
 
 $CC rustc $FLAGS
 
