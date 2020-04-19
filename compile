@@ -24,6 +24,7 @@ esac
 FLAGS+="--target=$TARGET "
 FLAGS+="-- -L dll "
 
+RUSTFLAGS="-L usr/dll-C link-args=-Wl,-rpath=$PWD/usr/dll"
 $CC rustc $FLAGS
 
 cp target/$TARGET/$BUILD/$NAME$EXT usr
